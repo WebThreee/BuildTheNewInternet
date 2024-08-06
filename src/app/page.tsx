@@ -7,6 +7,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ReactSVG } from "react"
 import Footer from "@/components/footer"
+import ConnectButton from "@/components/cb"
 
 export default function Component() {
   return (
@@ -29,9 +30,7 @@ export default function Component() {
           <Link href="#" className="text-sm font-medium hover:text-[#9e9e9e] transition-colors" prefetch={false}>
             Contact
           </Link>
-          <Button variant="outline" className="h-9 px-4 text-sm">
-            Connect Wallet
-          </Button>
+          <ConnectButton />
         </nav>
       </header>
       <main className="flex-1">
