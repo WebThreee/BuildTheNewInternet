@@ -15,6 +15,7 @@ export default function Home() {
   const router = useRouter()
   const [isExistingUser, setIsExistingUser] = useState(false)
   const { disconnect } = useDisconnect()
+  const [userType, setUserType] = useState('')
 
   useEffect(() => {
     if (isConnected && address) {
@@ -27,14 +28,17 @@ export default function Home() {
       const response = await fetch(`/api/check-user?address=${walletAddress}`)
       const data = await response.json()
       setIsExistingUser(data.exists)
-      if (!data.exists) {
+      if (data.exists) {
+        setUserType(data.userType)
+        // Redirect based on user type
+        router.push(data.userType === 'freelancer' ? '/f' : '/c')
+      } else {
         router.push('/register')
       }
     } catch (error) {
       console.error('Error checking user:', error)
     }
   }
-
   return (
     <div className="flex flex-col min-h-[100dvh] bg-[#0a0a0a] text-white font-futuristic">
     <motion.header
