@@ -18,7 +18,7 @@ const FreelancerPage: React.FC = () => {
 
     useEffect(() => {
         const fetchFreelancers = async () => {
-            const res = await fetch('http://localhost:3000/api/users');
+            const res = await fetch('https://dapp-ashy-sigma.vercel.app/api/users');
             const users: User[] = await res.json();
 
             // Filter freelancers
