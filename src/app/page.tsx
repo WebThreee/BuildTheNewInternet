@@ -30,7 +30,7 @@ export default function Home() {
       setIsExistingUser(data.exists)
       if (data.exists) {
         setUserType(data.userType)
-        // Redirect based on user type
+     
         router.push(data.userType === 'freelancer' ? '/f' : '/c')
       } else {
         router.push('/register')

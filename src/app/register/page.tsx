@@ -1,5 +1,4 @@
-'use client'
-
+"use client";
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAccount } from 'wagmi'
@@ -28,7 +27,11 @@ export default function Register() {
         body: JSON.stringify({ ...formData, userType, walletAddress: address }),
       })
       if (response.ok) {
-        router.push('/')
+        if (userType === 'freelancer') {
+          router.push('/f')
+        } else if (userType === 'client') {
+          router.push('/c')
+        }
       }
     } catch (error) {
       console.error('Error registering user:', error)
