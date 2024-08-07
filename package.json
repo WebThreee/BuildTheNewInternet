@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.1.2",
+    "@heroicons/react": "^2.1.5",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
     "@react-spring/web": "^9.7.4",
@@ -18,7 +20,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
-    "framer-motion": "^11.3.21",
+    "framer-motion": "^11.3.22",
     "lucide-react": "^0.424.0",
     "mongodb": "^6.8.0",
     "next": "14.2.5",
@@ -27,6 +29,7 @@
     "react-rough-notation": "^1.0.5",
     "react-tilt": "^1.0.2",
     "react-wrap-balancer": "^1.1.1",
+    "recharts": "^2.12.7",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "viem": "^2.18.8",
