@@ -20,7 +20,7 @@ interface User {
   name: string;
   age: string;
   experienceYears: string;
-  skills: string[];
+  skills: string;
   portfolioLink: string;
 }
 
@@ -110,8 +110,7 @@ const FreelancerPage: React.FC = () => {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-                {/* {["Web Design", "UI/UX", "Branding", "SEO", "Social Media", "Photography"].map((skill) => ( */}
-                {freelancer.skills.map((skill) => (
+                {["Web Design", "UI/UX", "Branding", "SEO", "Social Media", "Photography"].map((skill) => (
                   <Badge
                     key={skill}
                     variant="secondary"
