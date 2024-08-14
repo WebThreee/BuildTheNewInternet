@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
-
+import ChatPage from "@/components/ChatPage";
 import dynamic from 'next/dynamic';
 import { Avatar, AvatarImage, AvatarFallback } from "../../components/ui/avatar";
 import { Button } from "../../components/ui/button";
@@ -205,6 +205,7 @@ const FreelancerPage: React.FC = () => {
           </CardContent>
         </Card>
       </MotionDiv>
+      <ChatPage userType="Freelancer" />;
     </main>
   </div>
   );
