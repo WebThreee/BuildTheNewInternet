@@ -9,7 +9,7 @@ import DeployedContractABI from './DeployedContractABI.json';
 
 const FACTORY_ADDRESS = '0xB25c274b99049869d5b0d516191534a099bd5bD7';
 declare global {
-  interface Window {
+  interface Window { 
     ethereum?: any;
   }
 }

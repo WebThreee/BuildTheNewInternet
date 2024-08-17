@@ -111,7 +111,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                src="/placeholder.svg"
+                src="/1.webp"
                 width="550"
                 height="550"
                 alt="Hero"
@@ -151,7 +151,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                src="/placeholder.svg"
+                src="/2.png"
                 width="550"
                 height="310"
                 alt="Wallet"
@@ -233,7 +233,7 @@ export default function Home() {
                     className="mx-auto flex w-full items-center justify-center p-4 sm:p-8"
                   >
                     <img
-                      src="/placeholder.svg"
+                      src="/next.svg"
                       width="140"
                       height="70"
                       alt="Logo"
@@ -251,7 +251,7 @@ export default function Home() {
                     className="mx-auto flex w-full items-center justify-center p-4 sm:p-8"
                   >
                     <img
-                      src="/placeholder.svg"
+                      src="/vercel.svg"
                       width="140"
                       height="70"
                       alt="Logo"
