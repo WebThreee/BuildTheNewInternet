@@ -50,18 +50,18 @@ export default function Footer() {
         <Container className="grid gap-12 md:grid-cols-[1.5fr_0.5fr_0.5fr]">
           <div className="grid gap-6">
             <Link href="/">
-              <h3 className="sr-only">brijr/components</h3>
+              <h3 className="sr-only">Freelance Forge</h3>
             
             </Link>
             <p>
               <Balancer>
-                brijr/components is a collection of Next.js, React, Typescript
-                components for building landing pages and websites.
+               Your perfect destination for finding skilled people and hire them with trusted services,
+               de-centralized security and top skills.
               </Balancer>
             </p>
             <p className="text-muted-foreground">
               ©{" "}
-              <a href="https://github.com/brijr/components">brijr/components</a>
+              <a href="https://dapp-ashy-sigma.vercel.app/">webthreee</a>
               . All rights reserved. 2024-present.
             </p>
           </div>
@@ -92,7 +92,7 @@ export default function Footer() {
           </div>
           <p className="text-muted-foreground">
             ©{" "}
-            <a href="https://github.com/brijr/components">brijr/components</a>.
+            <a href="https://dapp-ashy-sigma.vercel.app/">webthreee</a>.
             All rights reserved. 2024-present.
           </p>
         </Container>
