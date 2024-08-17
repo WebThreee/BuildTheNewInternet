@@ -58,18 +58,19 @@ export default function Home() {
         </span>
       </Link>
       <nav className="flex items-center gap-4 sm:gap-6">
-        {["Explore", "Pricing", "About"].map((item) => (
-          <Link
-            key={item}
-            href="#"
-            className="text-sm font-medium hover:text-[#00ffff] transition-colors"
-            prefetch={false}
-          >
-            <RoughNotation type="underline" show={true} color="#00ffff">
-              {item}
-            </RoughNotation>
-          </Link>
-        ))}
+      {["Explore", "Pricing", "About"].map((item) => (
+  <Link
+    key={item}
+    href={`/${item}`}  // No need to change to lowercase since folder names are case-sensitive
+    className="text-sm font-medium hover:text-[#00ffff] transition-colors"
+    prefetch={false}
+  >
+    <RoughNotation type="underline" show={true} color="#00ffff">
+      {item}
+    </RoughNotation>
+  </Link>
+))}
+
         <ConnectButton />
           {isConnected && (
    <div>  
