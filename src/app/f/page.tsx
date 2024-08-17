@@ -131,7 +131,7 @@ const FreelancerPage: React.FC = () => {
             ]},
             { title: "Completed", badge: "12", items: [
               { name: "Logo Design", amount: "$500" },
-              { name: "Social Media Management", amount: "$1,200" },
+              { name: "Social Media Management", amount: "$1,200" },    
               { name: "SEO Optimization", amount: "$800" },
             ]},
             { title: "Payments", badge: "$4,500", items: [

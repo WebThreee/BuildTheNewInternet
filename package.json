@@ -25,6 +25,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
+    "ethers": "^6.13.2",
     "express": "^4.19.2",
     "framer-motion": "^11.3.23",
     "lucide-react": "^0.424.0",
@@ -41,7 +42,7 @@
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "viem": "^2.18.8",
-    "wagmi": "^2.12.2"
+    "wagmi": "^2.12.5"
   },
   "devDependencies": {
     "@types/node": "^20",

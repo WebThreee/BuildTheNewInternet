@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { Container, Grid, Card, CardContent, Typography, Button, Box, Chip, Avatar, TextField, Select, MenuItem, InputLabel, FormControl, AppBar, Toolbar, IconButton } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Footer from '@/components/footer';
+import DeployAgreementButton from "@/components/Button";
 
 const theme = createTheme({
 palette: {
@@ -152,6 +153,7 @@ const FreelancerPage: React.FC = () => {
                   ))}
               </Grid>
               <ChatPage userType="Client" />;
+              <DeployAgreementButton />
 
               <Box sx={{ mt: 8, textAlign: 'center' }}>
                   <Typography variant="h4" component="h3" gutterBottom>

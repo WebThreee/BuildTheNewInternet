@@ -1,0 +1,231 @@
+ [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "Client",
+          "type": "address",
+          "internalType": "address payable"
+        },
+        {
+          "name": "_Freelancer",
+          "type": "address",
+          "internalType": "address payable"
+        },
+        {
+          "name": "_ProjectPrice",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "_NumberOfMilestones",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "_ProjectTitle",
+          "type": "string",
+          "internalType": "string"
+        },
+        {
+          "name": "_ProjectDescription",
+          "type": "string",
+          "internalType": "string"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "Cancel",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "RevokeStakedMoney",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "StakeMoney",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "function",
+      "name": "WithdrawMoney",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "getContractDetails",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple",
+          "internalType": "struct FreelanceAgreement.ContractDetails",
+          "components": [
+            {
+              "name": "ClientAddress",
+              "type": "address",
+              "internalType": "address payable"
+            },
+            {
+              "name": "FreelancerAddress",
+              "type": "address",
+              "internalType": "address payable"
+            },
+            {
+              "name": "ContractAddress",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "ProjectPrice",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "NumberOfMilestones",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "CurrentMilestone",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "MilestonePayment",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "NumberOfMilestonesCompleted",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "ProjectTitle",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "ProjectDescription",
+              "type": "string",
+              "internalType": "string"
+            },
+            {
+              "name": "ClientStake",
+              "type": "bool",
+              "internalType": "bool"
+            },
+            {
+              "name": "projectStatus",
+              "type": "uint8",
+              "internalType": "enum FreelanceAgreement.Project_Status"
+            }
+          ]
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "getStatus",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8",
+          "internalType": "enum FreelanceAgreement.Project_Status"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "payAtOnce",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "payByMilestones",
+      "inputs": [],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "projectStatus",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8",
+          "internalType": "enum FreelanceAgreement.Project_Status"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "event",
+      "name": "ContractStateChanged",
+      "inputs": [
+        {
+          "name": "client",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "freelancer",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "status",
+          "type": "uint8",
+          "indexed": false,
+          "internalType": "enum FreelanceAgreement.Project_Status"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "error",
+      "name": "FreelanceAgreementAgreementNotCancelled",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "FreelanceAgreementAlreadyStakedMoney",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "FreelanceAgreementIncorrectProjectState",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "FreelanceAgreementIncorrectStakingAmount",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "FreelanceAgreement_TransferFailed",
+      "inputs": []
+    }
+  ]
