@@ -1,9 +1,9 @@
 <p align="center">
   <img src="public/freelanceforge.png" alt="Freelance Forge Logo" width="400"/>
 </p>
-<hr>
-<h4 style="text-align:center;" align="center">Freelance Forge is a decentralized platform that provides an escrow service to manage payments and project milestones between clients and freelancers. The platform ensures transparency, trust, and security through the use of smart contracts on the Ethereum blockchain.</h4>
 
+<h4 style="text-align:center;" align="center">Freelance Forge is a decentralized platform that provides an escrow service to manage payments and project milestones between clients and freelancers. The platform ensures transparency, trust, and security through the use of smart contracts on the Ethereum blockchain.</h4>
+<hr>
 
 ## What it Does
 
