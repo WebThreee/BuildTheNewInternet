@@ -1,12 +1,15 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { FaUser, FaBirthdayCake, FaBriefcase, FaTools, FaExternalLinkAlt, FaSearch, FaFilter } from 'react-icons/fa';
+import { FaUser, FaBirthdayCake, FaBriefcase, FaTools, FaExternalLinkAlt, FaSearch } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { Container, Grid, Card, CardContent, Typography, Button, Box, Chip, Avatar, TextField, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Footer from '@/components/footer';
 import DeployAgreementButton from "@/components/Button";
 import ChatPage from "@/components/ChatPage";
+import Dashboard from '@/components/Dashboard';
+import { useAccount, useDisconnect } from 'wagmi';
+import { useRouter } from 'next/navigation';
 
 const theme = createTheme({
   palette: {
@@ -31,10 +34,17 @@ const FreelancerPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [skillFilter, setSkillFilter] = useState('');
   const [selectedFreelancer, setSelectedFreelancer] = useState<User | null>(null);
+  const [contractAddress, setContractAddress] = useState<string | null>(null);
+  const [contractFunctions, setContractFunctions] = useState<string[]>([]);
+
+  const { address } = useAccount();
+  const { disconnect } = useDisconnect();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchFreelancers = async () => {
-      const res = await fetch('http://localhost:3000/api/users');
+      const res = await fetch('https://dapp-ashy-sigma.vercel.app/api/users');
+
       const users: User[] = await res.json();
       const freelancers = users.filter(user => user.userType === 'freelancer');
       setFreelancers(freelancers);
@@ -47,16 +57,34 @@ const FreelancerPage: React.FC = () => {
     (skillFilter === '' || freelancer.skills.toLowerCase().includes(skillFilter.toLowerCase()))
   );
 
-  const handleHire = (freelancer: User) => {
+  const handleHire = (freelancer: User, address: string, functions: string[]) => {
     setSelectedFreelancer(freelancer);
+    setContractAddress(address);
+    setContractFunctions(functions);
+  };
+
+  const handleCallFunction = (funcName: string) => {
+    console.log(`Calling function: ${funcName}`);
+  };
+
+  const handleDisconnect = async () => {
+    await disconnect();
+    if (typeof window !== 'undefined') {
+      router.push('/');
+    }
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="lg" sx={{ py: 4 }}>
-        <Typography variant="h2" component="h1" gutterBottom align="center">
-          Find Your Perfect Freelancer
-        </Typography>
+        <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
+          <Typography variant="h2" component="h1" gutterBottom>
+            Find Your Perfect Freelancer
+          </Typography>
+          <Button variant="contained" color="secondary" onClick={handleDisconnect}>
+            Disconnect Wallet
+          </Button>
+        </Box>
         <Typography variant="h5" component="h2" gutterBottom align="center" color="text.secondary">
           Connect with skilled professionals for your next project
         </Typography>
@@ -137,9 +165,9 @@ const FreelancerPage: React.FC = () => {
                         Portfolio
                       </Button>
                       <DeployAgreementButton
-  freelancerAddress={freelancer.walletAddress}
-  onHire={() => handleHire(freelancer)}
-/>
+                        freelancerAddress={freelancer.walletAddress}
+                        onHire={(address, functions) => handleHire(freelancer, address, functions)}
+                      />
                     </Box>
                   </CardContent>
                 </Card>
@@ -149,10 +177,12 @@ const FreelancerPage: React.FC = () => {
         </Grid>
 
         {selectedFreelancer && (
-          <Box mt={4}>
-            <Typography variant="h6">Selected Freelancer: {selectedFreelancer.name}</Typography>
-            <Typography>Wallet Address: {selectedFreelancer.walletAddress}</Typography>
-          </Box>
+          <Dashboard
+            freelancerName={selectedFreelancer.name}
+            contractAddress={contractAddress}
+            contractFunctions={contractFunctions}
+            onCallFunction={handleCallFunction}
+          />
         )}
 
         <ChatPage userType="Client" />
@@ -183,13 +213,14 @@ const FreelancerPage: React.FC = () => {
                 24/7 Support
               </Typography>
               <Typography variant="body1">
-                Our dedicated team is always ready to assist you with any queries.
+                We provide round-the-clock support to assist with any queries or issues.
               </Typography>
             </Grid>
           </Grid>
         </Box>
+
+        <Footer />
       </Container>
-      <Footer />
     </ThemeProvider>
   );
 };

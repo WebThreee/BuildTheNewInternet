@@ -1,4 +1,3 @@
-// components/Button.tsx
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import Modal from 'react-modal';
@@ -64,16 +63,9 @@ const Button = styled.button`
   }
 `;
 
-const ContractInfo = styled.div`
-  margin-top: 2rem;
-  padding: 1rem;
-  background-color: #f8f9fa;
-  border-radius: 4px;
-`;
-
 interface DeployAgreementButtonProps {
   freelancerAddress: string;
-  onHire: () => void;
+  onHire: (address: string, functions: string[]) => void;
 }
 
 const DeployAgreementButton: React.FC<DeployAgreementButtonProps> = ({ freelancerAddress, onHire }) => {
@@ -85,8 +77,6 @@ const DeployAgreementButton: React.FC<DeployAgreementButtonProps> = ({ freelance
     projectTitle: '',
     projectDescription: ''
   });
-  const [contractAddress, setContractAddress] = useState<string | null>(null);
-  const [contractFunctions, setContractFunctions] = useState<string[]>([]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -134,14 +124,13 @@ const DeployAgreementButton: React.FC<DeployAgreementButtonProps> = ({ freelance
 
       if (log) {
         const deployedContractAddress = ethers.getAddress(`0x${log.topics[3].slice(-40)}`);
-        setContractAddress(deployedContractAddress);
-        await fetchContractFunctions(deployedContractAddress);
+        const functions = await fetchContractFunctions(deployedContractAddress);
+        onHire(deployedContractAddress, functions);
       } else {
         console.error('AgreementCreated event not found in logs');
       }
 
       setIsModalOpen(false);
-      onHire();
     } catch (error) {
       console.error('Error deploying agreement:', error);
     } finally {
@@ -149,7 +138,7 @@ const DeployAgreementButton: React.FC<DeployAgreementButtonProps> = ({ freelance
     }
   };
 
-  const fetchContractFunctions = async (address: string) => {
+  const fetchContractFunctions = async (address: string): Promise<string[]> => {
     try {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const contract = new ethers.Contract(address, DeployedContractABI, provider);
@@ -160,42 +149,11 @@ const DeployAgreementButton: React.FC<DeployAgreementButtonProps> = ({ freelance
         console.error('No functions found in the ABI');
       } else {
         console.log('Functions retrieved:', functionNames);
-        setContractFunctions(functionNames);
       }
+      return functionNames;
     } catch (error) {
       console.error('Error fetching contract functions:', error);
-    }
-  };
-
-  const callContractFunction = async (funcName: string) => {
-    if (contractAddress) {
-      try {
-        console.log(`Calling function ${funcName}...`);
-        const provider = new ethers.BrowserProvider(window.ethereum);
-        const signer = await provider.getSigner();
-        const contract = new ethers.Contract(contractAddress, DeployedContractABI, signer);
-  
-        const tx = await contract[funcName]();
-        console.log(`Function ${funcName} called. Waiting for confirmation...`);
-        
-        const receipt = await Promise.race([
-          tx.wait(),
-          new Promise((_, reject) => setTimeout(() => reject(new Error('Transaction timed out')), 60000))
-        ]);
-  
-        console.log(`${funcName} called successfully. Transaction receipt:`, receipt);
-      } catch (error) {
-        if (error instanceof Error) {
-          console.error(`Error calling ${funcName}:`, error.message);
-          if (error.message.includes('Transaction timed out')) {
-            console.error('The transaction took too long to confirm. Please check the network or try increasing the gas limit.');
-          }
-        } else {
-          console.error(`Unexpected error:`, error);
-        }
-      }
-    } else {
-      console.error('Contract address is not set.');
+      return [];
     }
   };
 
@@ -252,21 +210,6 @@ const DeployAgreementButton: React.FC<DeployAgreementButtonProps> = ({ freelance
           </Button>
         </Form>
       </StyledModal>
-
-      {contractAddress && (
-        <ContractInfo>
-          <h3>Deployed Contract Address: {contractAddress}</h3>
-          {contractFunctions.length > 0 ? (
-            contractFunctions.map(funcName => (
-              <Button key={funcName} onClick={() => callContractFunction(funcName)}>
-                Call {funcName}
-              </Button>
-            ))
-          ) : (
-            <p>No functions available.</p>
-          )}
-        </ContractInfo>
-      )}
     </>
   );
 };

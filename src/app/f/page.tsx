@@ -2,7 +2,8 @@
 // src/app/freelancer/page.tsx
 
 import React, { useEffect, useState } from 'react';
-import { useAccount } from 'wagmi';
+import { useAccount , useDisconnect } from 'wagmi';
+import { Box } from '@mui/material';
 import ChatPage from "@/components/ChatPage";
 import dynamic from 'next/dynamic';
 import { Avatar, AvatarImage, AvatarFallback } from "../../components/ui/avatar";
@@ -10,7 +11,7 @@ import { Button } from "../../components/ui/button";
 import { Card, CardHeader, CardContent } from "../../components/ui/card";
 import { Badge } from "../../components/ui/badge";
 import { JSX, SVGProps } from "react";
-
+import { useRouter } from 'next/navigation';
 const MotionDiv = dynamic(() => import('framer-motion').then((mod) => mod.motion.div), { ssr: false });
 
 interface User {
@@ -27,7 +28,15 @@ interface User {
 const FreelancerPage: React.FC = () => {
   const { address } = useAccount();
   const [freelancer, setFreelancer] = useState<User | null>(null);
-
+  const { disconnect } = useDisconnect();
+  const router = useRouter();
+  
+  const handleDisconnect = async () => {
+    await disconnect();
+    if (typeof window !== 'undefined') {
+      router.push('/');
+    }
+  };
   useEffect(() => {
     if (!address) return;
 
@@ -86,7 +95,13 @@ const FreelancerPage: React.FC = () => {
               </MotionDiv>
             ))}
           </div>
+          <Box>
+          <Button  color="secondary" onClick={handleDisconnect}>
+            Disconnect Wallet
+          </Button>
+          </Box>
         </div>
+        
       </div>
       <div className="flex items-center gap-2">
         <Button variant="outline" size="sm" className="hover:bg-primary hover:text-white transition-colors">
