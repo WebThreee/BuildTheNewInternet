@@ -39,12 +39,12 @@ export default function Home() {
     }
   }
   return (
-    <div className="flex flex-col min-h-[100dvh] bg-[#0a0a0a] text-white font-futuristic">
+    <div className="flex flex-col min-h-[100dvh] font-futuristic">
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 100 }}
-      className="px-4 lg:px-6 h-14 flex items-center justify-between bg-[#1a1a1a] backdrop-filter backdrop-blur-lg bg-opacity-30"
+      className="px-4 lg:px-6 h-14 flex items-center justify-between  backdrop-filter backdrop-blur-lg bg-opacity-30"
     >
       <Link href="#" className="flex items-center gap-2" prefetch={false}>
         <motion.div
@@ -126,7 +126,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="w-full py-12 md:py-24 lg:py-32 bg-[#0d1117]"
+        className="w-full py-12 md:py-24 lg:py-32"
       >
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -187,7 +187,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="w-full py-12 md:py-24 lg:py-32 bg-[#0d1117]"
+        className="w-full py-12 md:py-24 lg:py-32 "
       >
         <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
           <div className="space-y-2">
@@ -213,7 +213,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="w-full py-12 md:py-24 lg:py-32 bg-[#0d1117]"
+        className="w-full py-12 md:py-24 lg:py-32"
       >
         <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
           <div className="space-y-3">
